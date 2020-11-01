@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "79613329420",
+    "firebase_url": "https://divyashram-bdb6a.firebaseio.com",
+    "project_id": "divyashram-bdb6a",
+    "storage_bucket": "divyashram-bdb6a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:79613329420:android:05b268a4f8cead42bc2e29",
+        "android_client_info": {
+          "package_name": "com.example.divya_shramik"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "79613329420-piovu797tlcupekgsjdmiqppn8281v4j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmP6MJ_G5axGp07miGUMVEThiR5kqkBSk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "79613329420-piovu797tlcupekgsjdmiqppn8281v4j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
