@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:divya_shramik/home.dart';
-import 'package:divya_shramik/login.dart';
-import 'package:divya_shramik/register.dart';
+import 'package:divya_shramik/authorize/login.dart';
+import 'package:divya_shramik/authorize/register.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

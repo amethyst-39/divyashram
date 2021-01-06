@@ -1,3 +1,4 @@
+import 'package:divya_shramik/profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -10,17 +11,29 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int _currentTabIndex = 1;
   @override
   Widget build(BuildContext context) {
+    double h = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: Container(
-        child: Center(
-          child: FlatButton(
-            child: Text(
-              'Log Out',
-              style: TextStyle(fontFamily: 'Lora'),
+      appBar: AppBar(
+        backgroundColor: Color(0xff05B7C1),
+        title: Text(
+          'HOME',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        actions: <Widget>[
+          FlatButton(
+            child: Row(
+              children: [
+                Icon(Icons.person),
+                Text(
+                  'Log Out',
+                  style: TextStyle(fontFamily: 'Lora'),
+                ),
+              ],
             ),
-            textColor: Colors.black,
+            textColor: Colors.white,
             onPressed: () {
               FirebaseAuth.instance
                   .signOut()
@@ -29,8 +42,77 @@ class _HomePageState extends State<HomePage> {
                   .catchError((err) => print(err));
             },
           ),
-        ),
+        ],
       ),
+      body: Column(
+        children: [
+          FlatButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Profile(
+                              uid: widget.uid,
+                            )));
+              },
+              child: Text('Profile'))
+        ],
+      ),
+      bottomNavigationBar: _bottomNavigationBar(),
     );
+  }
+
+  Widget _bottomNavigationBar() {
+    return BottomNavigationBar(
+      selectedItemColor: Color(0xff62FFFF),
+      unselectedItemColor: Colors.white,
+      backgroundColor: Colors.grey[850],
+      type: BottomNavigationBarType.fixed,
+      items: [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.account_circle),
+          title: Text("profile"),
+        ),
+        BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("home")),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.settings),
+          title: Text("nuh"),
+        )
+      ],
+      onTap: _onTap,
+      currentIndex: _currentTabIndex,
+    );
+  }
+
+  _onTap(int tabIndex) {
+    switch (tabIndex) {
+      case 0:
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) => Profile(
+                      uid: widget.uid,
+                    )));
+        break;
+      case 1:
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) => HomePage(
+                      uid: widget.uid,
+                    )));
+        break;
+      case 2:
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) => HomePage(
+                      uid: widget.uid,
+                    )));
+        break;
+    }
+    setState(() {
+      _currentTabIndex = tabIndex;
+    });
   }
 }
