@@ -278,7 +278,30 @@ class _RegisterPageState extends State<RegisterPage> {
                                           confirmPwdInputController.clear()
                                         })
                                     .catchError((err) => print(err)))
-                                .catchError((err) => print(err));
+                                .catchError((err) {
+                              String errorMsg;
+                              print(err);
+                              if (err.code == "ERROR_EMAIL_ALREADY_IN_USE") {
+                                errorMsg =
+                                    "Email is already in use. Login or create an account with a new email id.";
+                              }
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text("Error"),
+                                      content: Text(errorMsg),
+                                      actions: <Widget>[
+                                        FlatButton(
+                                          child: Text("Close"),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        )
+                                      ],
+                                    );
+                                  });
+                            });
                           } else {
                             showDialog(
                                 context: context,
